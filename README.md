@@ -1,5 +1,5 @@
-# OpenGL examples
-some usefull OpenGL resources i found on the net
+# OpenGL notes
+some usefull OpenGL resources and notes i found on the net
 
 ## Install freeglut
 run
@@ -19,4 +19,4 @@ then copy freeglut/include and freeglut/lib contents to ./include and ./lib
 <!-- -lopengl32 -lglew -lfreeglut -lgdi32 -luser32 -->
 
 ## sources
-(This)[https://cs.lmu.edu/~ray/notes/openglexamples/]
+[This](https://cs.lmu.edu/~ray/notes/openglexamples/)
