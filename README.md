@@ -7,7 +7,7 @@ some usefull OpenGL resources and notes i found on the net
 - Windows `libfreeglut.dll` file is included on `./`
 - Linux pre-built binary are already on `./lib/` with name `*.o`
 If for any reason the pre-built bin are not working then delete `./lib/` and `libfreeglut.dll` then see below to manually build it.
-### manually build
+### Manually build
 - Install [cmake](https://cmake.org/) and `make`
 - Run
 ```
@@ -22,6 +22,7 @@ If for any reason the pre-built bin are not working then delete `./lib/` and `li
 - Remember to test demos on `./freeglut/bin/` to make sure freeglut was built correctly
 
 ## Build using g++
+**DO NOT change the order of parameters!**
 ### Linux
 `g++ file.name -I./include -L./lib -lGL -lglut -o filename`
 ### Windows
