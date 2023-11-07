@@ -26,7 +26,7 @@ If for any reason the pre-built binaries are not working then delete the content
 ### Linux
 `g++ file.name -I./include -L./lib -lGL -lGLU -lglut -o filename`
 ### Windows
-`g++ file.name -I./include -L./lib -lopengl32 -lfreeglut -o filename.exe`
+`g++ file.name -I./include -L./lib -lopengl32 -lglu32 -lfreeglut -o filename.exe`
 
 ## Examples sources
 [This](https://cs.lmu.edu/~ray/notes/openglexamples/)
