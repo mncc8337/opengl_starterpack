@@ -24,7 +24,7 @@ If for any reason the pre-built binaries are not working then delete the content
 ## Build using g++
 **DO NOT change the order of parameters!**
 ### Linux
-`g++ file.name -I./include -L./lib -lGL -lglut -o filename`
+`g++ file.name -I./include -L./lib -lGL -lGLU -lglut -o filename`
 ### Windows
 `g++ file.name -I./include -L./lib -lopengl32 -lfreeglut -o filename.exe`
 
