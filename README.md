@@ -3,8 +3,7 @@ some usefull OpenGL resources and notes i found on the net
 
 ## Install freeglut
 ### Pre-built
-- Windows pre-built binaries are already on `./lib/` with name `libfreeglut.*`
-- Windows `libfreeglut.dll` file is included on `./`
+- Download Windows pre-built [here](https://www.transmissionzero.co.uk/software/freeglut-devel/)
 - Linux pre-built binaries are already on `./lib/` with name `libglut.*`  
 If for any reason the pre-built binaries are not working then delete the contents of `./lib/` and `libfreeglut.dll` and see below to manually build it.
 ### Manually build
