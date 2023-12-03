@@ -28,14 +28,14 @@ Too lazy to write anything here
 **DO NOT change the order of parameters!**
 ### freeglut
 #### Linux
-`g++ file.name -lGL -lGLU -lglut -o filename`
+`g++ file.name -I./include -lGL -lGLU -lglut -o filename`
 #### Windows
-`g++ file.name -lopengl32 -lglu32 -lfreeglut -o filename.exe`
+`g++ file.name -I./include -lopengl32 -lglu32 -lfreeglut -o filename.exe`
 ### glfw
 #### Linux
-`g++ file.name -lGL -lGLU -lglfw -o filename`
+`g++ file.name -I./include -lGL -lGLU -lglfw -o filename`
 #### Windows
-`g++ file.name -lopengl32 -lglu32 -lglfw3 -o filename.exe`
+`g++ file.name -I./include -lopengl32 -lglu32 -lglfw3 -o filename.exe`
 
 ## Examples sources
 ### glut
