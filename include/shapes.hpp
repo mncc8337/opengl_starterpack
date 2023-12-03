@@ -55,3 +55,15 @@ void drawCircle(vec2f center, float radius, vec3f color, float rotation, bool fi
     for(int i = 0; i < side; i++) colors[i] = color;
     drawRegularPolygon(center, radius, side, colors, rotation, fill);
 }
+
+// draw a graph from a given function
+void drawGraph(vec2f origin, float (*function)(float), float d = 0.01f, float zoom = 10.0f, vec3f color = vec3f(0, 1, 0)) {
+    glBegin(GL_POINTS);
+        glColor3f(color.x, color.y, color.z);
+
+        for(float x = -1/zoom; x <= 1/zoom; x += d/zoom) {
+            float y = function(x - origin.x / zoom) + origin.y / zoom;
+            glVertex2f(x * zoom, y * zoom);
+        }
+    glEnd();
+}
