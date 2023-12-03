@@ -6,6 +6,7 @@
 #include "transformations.hpp"
 #include <math.h>
 
+// draw heart the ineffeciency way
 void drawHeart(vec2f position, float size, vec3f color, float rotation) {
     glBegin(GL_POINTS);
         glColor3f(color.x, color.y, color.z);
