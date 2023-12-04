@@ -1,7 +1,6 @@
 // draw some graphs
 // move using mouse / WASD
 // zoom using mouse wheel / QE
-// increase step using XZ
 
 #include <GLFW/glfw3.h>
 #include "shapes.hpp"
@@ -11,8 +10,7 @@
 vec2f origin;
 vec2f mouse_position;
 float speed = 0.01f;
-float zoom = 1;
-float step = 0.005f;
+float zoom = 0.07;
 
 vec2f mouse_position_on_click;
 bool mouse_holding = false;
@@ -32,6 +30,7 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
     glfwGetWindowSize(window, &width, &height);
     mouse_position.x = xpos / (float)width;
     mouse_position.y = ypos / (float)height;
+    mouse_position *= 2.0f;
 }
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     if(button == GLFW_MOUSE_BUTTON_LEFT) {
@@ -47,7 +46,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {
     }
 }
 void scrollCallback(GLFWwindow* window, double xoffset, double yoffset) {
-    zoom += 0.01f * yoffset;
+    zoom += 0.02f * yoffset;
 }
 
 void processInput() {
@@ -61,28 +60,34 @@ void processInput() {
     origin += dir * speed;
 
     zoom += 0.01f * ((int)keyhold[GLFW_KEY_E] - (int)keyhold[GLFW_KEY_Q]);
-    step += 0.001f * ((int)keyhold[GLFW_KEY_Z] - (int)keyhold[GLFW_KEY_X]);
-    if(step <= 0) step = 0.001f;
-    if(step >  1) step = 1;
 }
 
-float sinGraph(float x) {
+float sinFunc(float x) {
     return sin(x);
 }
-float tanGraph(float x) {
+float movingSinFunc(float x) {
+    return sin(x + glfwGetTime());
+}
+float tanFunc(float x) {
     return tan(x);
 }
-float logGraph(float x) {
+float logFunc(float x) {
     return log(x);
 }
-float quadraticGraph(float x) {
+float quadraticFunc(float x) {
     return x * x;
+}
+float floorFunc(float x) {
+    return int(x);
+}
+float linearFunc(float x) {
+    return (x + 3) / 2;
 }
 
 int main(void) {
     glfwInit();
 
-    GLFWwindow* window = glfwCreateWindow(800, 800, "graph", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 800, "graphs", NULL, NULL);
     glfwMakeContextCurrent(window);
 
     glfwSetKeyCallback(window, keyCallback);
@@ -113,10 +118,13 @@ int main(void) {
         glEnd();
 
         // the graphs
-        drawGraph(origin, sinGraph, step, zoom);
-        drawGraph(origin, tanGraph, step, zoom, vec3f(0.5, 0.5, 1));
-        drawGraph(origin, logGraph, step, zoom, vec3f(1, 1, 0));
-        drawGraph(origin, quadraticGraph, step, zoom, vec3f(0, 1, 1));
+        drawGraph(origin, sinFunc, zoom);
+        drawGraph(origin, movingSinFunc, zoom, vec3f(0.5, 0.5, 0.5));
+        drawGraph(origin, tanFunc, zoom, vec3f(0.5, 0.5, 1));
+        drawGraph(origin, logFunc, zoom, vec3f(1, 1, 0));
+        drawGraph(origin, quadraticFunc, zoom, vec3f(0, 1, 1));
+        drawGraph(origin, floorFunc, zoom, vec3f(0.5, 1, 0.5));
+        drawGraph(origin, linearFunc, zoom, vec3f(0.5, 1, 0.5));
     
         if(mouse_holding)
             origin -= mouse_dir;

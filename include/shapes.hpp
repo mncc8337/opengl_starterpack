@@ -57,13 +57,23 @@ void drawCircle(vec2f center, float radius, vec3f color, float rotation, bool fi
 }
 
 // draw a graph from a given function
-void drawGraph(vec2f origin, float (*function)(float), float d = 0.01f, float zoom = 10.0f, vec3f color = vec3f(0, 1, 0)) {
-    glBegin(GL_POINTS);
+void drawGraph(vec2f origin, float (*function)(float), float zoom = 1.0f, vec3f color = vec3f(0, 1, 0)) {
+    const float step = 0.00005f;
+    
+    glBegin(GL_LINES);
         glColor3f(color.x, color.y, color.z);
 
-        for(float x = -1/zoom; x <= 1/zoom; x += d/zoom) {
+        for(float x = -1/zoom; x <= 1/zoom; x += step/zoom) {
             float y = function(x - origin.x / zoom) + origin.y / zoom;
-            glVertex2f(x * zoom, y * zoom);
+            vec2f p1(x * zoom, y * zoom);
+
+            float x2 = x + step/zoom;
+            float y2 = function(x2 - origin.x / zoom) + origin.y / zoom;
+            vec2f p2(x2 * zoom, y2 * zoom);
+            if(length(p1 - p2)/zoom < 0.5f) {
+                glVertex2f(p1.x, p1.y);
+                glVertex2f(p2.x, p2.y);
+            }
         }
     glEnd();
 }
